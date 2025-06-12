@@ -25,5 +25,10 @@ namespace RunApp.Controllers
             return View(club);
         }
 
+        public IActionResult Create()
+        {
+            return View();
+        }
+
     }
 }
