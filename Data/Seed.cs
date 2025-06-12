@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Identity;
-using RunGroopWebApp.Data.Enum;
-using RunGroopWebApp.Models;
+using RunApp.Data.Enum;
+using RunApp.Models;
 
-namespace RunGroopWebApp.Data
+namespace RunApp.Data
 {
     public class Seed
     {
@@ -111,7 +111,7 @@ namespace RunGroopWebApp.Data
             }
         }
 
-        public static async Task SeedUsersAndRolesAsync(IApplicationBuilder applicationBuilder)
+        /* public static async Task SeedUsersAndRolesAsync(IApplicationBuilder applicationBuilder)
         {
             using (var serviceScope = applicationBuilder.ApplicationServices.CreateScope())
             {
@@ -167,6 +167,6 @@ namespace RunGroopWebApp.Data
                     await userManager.AddToRoleAsync(newAppUser, UserRoles.User);
                 }
             }
-        }
+        } */
     }
 }
