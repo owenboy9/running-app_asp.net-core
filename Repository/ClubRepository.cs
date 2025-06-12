@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using RunApp.Data;
 using RunApp.Interfaces;
 using RunApp.Models;
@@ -14,37 +15,42 @@ namespace RunApp.Repository
         }
         public bool Add(Club club)
         {
-            throw new NotImplementedException();
+            _context.Add(club);
+            return Save();
         }
 
         public bool Delete(Club club)
         {
-            throw new NotImplementedException();
+            _context.Remove(club);
+            return Save();
         }
 
-        public Task<IEnumerable<Club>> GetAll()
+        public async Task<IEnumerable<Club>> GetAll()
         {
-            throw new NotImplementedException();
+            return await _context.Clubs.ToListAsync();
+        
         }
 
-        public Task<Club> GetByIcAcync(int id)
+        public async Task<Club> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _context.Clubs.Include(i => i.Address).FirstOrDefaultAsync(c => c.Id == id);
         }
 
-        public Task<IEnumerable<Club>> GetClubByCity(string city)
+        public async Task<IEnumerable<Club>> GetClubByCity(string city)
         {
-            throw new NotImplementedException();
+            return await _context.Clubs.Where(c => c.Address.City.Contains(city)).ToListAsync();
         }
 
         public bool Save()
         {
-            throw new NotImplementedException();
+            var saved = _context.SaveChanges();
+            return saved > 0 ? true : false;
         }
 
         public bool Update(Club club)
         {
-            throw new NotImplementedException();
+            _context.Update(club);
+            return Save();
         }
     }
 }
